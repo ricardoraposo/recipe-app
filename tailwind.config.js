@@ -1,9 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-content: [
+  content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-  ],  theme: {
+  ],
+  theme: {
     extend: {
       colors: {
         mainPurple: '#41197F',

@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import RecipiesContext from '../context/RecipiesContext';
 import { DrinkType, MealType } from '../Type/type';
+import { addToCache, getFromCache } from '../hooks/useFetch';
 
 function SearchBar() {
-  const { updateRecipesList } = useContext(RecipiesContext);
+  const { updateRecipesList, updateLoading } = useContext(RecipiesContext);
   const { pathname } = useLocation();
   const [searchType, setSearchType] = React.useState('');
   const [searchInput, setSearchInput] = React.useState('');
@@ -44,12 +45,22 @@ function SearchBar() {
     }
 
     try {
+      const cachedData = getFromCache<DrinkType[] | MealType[]>(ENDPOINT);
+      if (cachedData) {
+        updateRecipesList(cachedData);
+        return;
+      }
+      updateLoading(true);
       const response = await fetch(ENDPOINT);
       const data = await response.json();
       redirectToDetailsPage(data);
-      updateRecipesList(Object.values(data)[0] as DrinkType[] | MealType[]);
+      const recipes = Object.values(data)[0] as DrinkType[] | MealType[];
+      updateRecipesList(recipes);
+      addToCache(ENDPOINT, recipes);
     } catch {
       window.alert('Sorry, we haven\'t found any recipes for these filters.');
+    } finally {
+      updateLoading(false);
     }
   };
 
@@ -63,7 +74,10 @@ function SearchBar() {
   };
 
   return (
-    <div>
+    <div
+      className="flex flex-col justify-center bg-mainPurple rounded-t-xl rounded-b-lg
+      mx-4 mb-6"
+    >
       <div>
         <input
           type="text"
@@ -72,17 +86,11 @@ function SearchBar() {
           placeholder="Search..."
           value={ searchInput }
           onChange={ (e) => setSearchInput(e.target.value) }
+          className="border w-full py-2 px-4 rounded-md"
         />
-        <button
-          type="button"
-          data-testid="exec-search-btn"
-          onClick={ handleSearch }
-        >
-          Search
-        </button>
       </div>
-      <div>
-        <label>
+      <div className="my-4 flex justify-around text-white font-thin text-sm">
+        <label className="flex items-center gap-1">
           <input
             type="radio"
             id="ingredient-search-radio"
@@ -94,7 +102,7 @@ function SearchBar() {
           />
           Ingredient
         </label>
-        <label>
+        <label className="flex items-center gap-1">
           <input
             type="radio"
             id="name-search-radio"
@@ -106,7 +114,7 @@ function SearchBar() {
           />
           Name
         </label>
-        <label>
+        <label className="flex items-center gap-1">
           <input
             type="radio"
             id="first-letter-search-radio"
@@ -119,6 +127,14 @@ function SearchBar() {
           First letter
         </label>
       </div>
+      <button
+        type="button"
+        data-testid="exec-search-btn"
+        onClick={ handleSearch }
+        className="mx-auto bg-mainYellow w-3/4 mb-2 text-white rounded-md tracking-wide"
+      >
+        SEARCH
+      </button>
     </div>
   );
 }

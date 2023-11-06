@@ -34,18 +34,18 @@ function Header() {
 
   return (
     <>
-      <header className="flex justify-between items-center bg-mainYellow">
-        <div className="flex items-center">
+      <header className="flex justify-between items-center bg-mainYellow px-3 py-1">
+        <div className="flex items-center gap-6">
           <div>
-            <img src={ LogoIcon } alt="recipe app icon" />
+            <img src={ LogoIcon } alt="recipe app icon" className="h-12" />
+            <div className="search-icon" />
           </div>
-          <div className="flex">
-            <p className="italic text-mainPurple">RECIPE</p>
-            {' '}
-            <span className="font-bold text-mainPurple">app</span>
+          <div className="flex items-end gap-x-1">
+            <h2 className="italic font-light text-mainPurple">RECIPES</h2>
+            <span className="font-bold text-mainPurple text-xl">app</span>
           </div>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           {showSearchIcon && (
             <div>
               <button onClick={ toggleSearchBar }>
@@ -53,11 +53,9 @@ function Header() {
                   data-testid="search-top-btn"
                   src={ searchIcon }
                   alt="Ícone de Pesquisa"
+                  className="h-8"
                 />
               </button>
-              {showSearchBar && (
-                <SearchBar />
-              )}
             </div>
           )}
           <Link to="/profile">
@@ -65,11 +63,13 @@ function Header() {
               data-testid="profile-top-btn"
               src={ profileIcon }
               alt="Ícone de Perfil"
+              className="h-9 hover:text-white"
             />
           </Link>
         </div>
       </header>
       {pageTitle()}
+      {showSearchBar && <SearchBar />}
       <Outlet />
     </>
   );

@@ -3,14 +3,10 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <div>
-      <style>
-        {`
-         footer {
-          position : fixed;
-          bottom : 0;
-          }`}
-      </style>
-      <footer data-testid="footer">
+      <footer
+        data-testid="footer"
+        className="w-screen fixed bottom-0 bg-mainPurple flex justify-between px-12 py-2"
+      >
         <button>
           <Link to="/drinks">
             <img

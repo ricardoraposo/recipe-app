@@ -3,27 +3,28 @@ import { Link, useLocation } from 'react-router-dom';
 import RecipiesContext from '../context/RecipiesContext';
 import RecipeCard from './RecipeCard';
 import { DrinkType, MealType } from '../Type/type';
+import Loading from './Loading';
 
 type RenderRecipesProps = {
   listLength: number;
 };
 
 function RenderRecipes({ listLength }: RenderRecipesProps) {
-  const { renderRecipes } = useContext(RecipiesContext);
+  const { renderRecipes, loading } = useContext(RecipiesContext);
   const { pathname } = useLocation();
 
   return (
-    <div>
-      <ul>
-        {renderRecipes?.slice(0, listLength)
-          .map((recipe: DrinkType | MealType, index) => (
-            <li key={ index }>
-              <Link to={ `${pathname}/${recipe.idMeal || recipe.idDrink}` }>
+    <div className="flex flex-wrap justify-center gap-8">
+      {
+        loading ? <Loading /> : (
+          renderRecipes?.slice(0, listLength)
+            .map((recipe: DrinkType | MealType, index) => (
+              <Link to={ `${pathname}/${recipe.idMeal || recipe.idDrink}` } key={ index }>
                 <RecipeCard cardIndex={ index } recipe={ recipe } />
               </Link>
-            </li>
-          ))}
-      </ul>
+            ))
+        )
+      }
     </div>
   );
 }
