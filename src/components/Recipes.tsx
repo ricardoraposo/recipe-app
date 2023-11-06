@@ -41,7 +41,7 @@ function Recipes() {
   }, [endpoints.initialList]);
 
   return (
-    <section className="mb-14">
+    <section className="mb-14 transition transform delay-75">
       <CategoryFilter endpoints={ endpoints } />
       <RenderRecipes listLength={ 12 } />
     </section>

@@ -53,16 +53,18 @@ function FavoriteButton({ favorites }: FavoriteButtonProps) {
   };
 
   return (
-    <button
-      style={ { margin: 300 } }
-      onClick={ setToFavorites }
-    >
-      <img
-        data-testid="favorite-btn"
-        src={ checked ? blackHeartIcon : whiteHeartIcon }
-        alt={ checked ? 'InLove' : 'NotInLove' }
-      />
-    </button>
+    <div>
+      <button
+        onClick={ setToFavorites }
+      >
+        <img
+          data-testid="favorite-btn"
+          src={ checked ? blackHeartIcon : whiteHeartIcon }
+          alt={ checked ? 'InLove' : 'NotInLove' }
+          className="h-7"
+        />
+      </button>
+    </div>
   );
 }
 

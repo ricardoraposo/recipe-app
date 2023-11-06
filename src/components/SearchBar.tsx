@@ -4,7 +4,7 @@ import RecipiesContext from '../context/RecipiesContext';
 import { DrinkType, MealType } from '../Type/type';
 import { addToCache, getFromCache } from '../hooks/useFetch';
 
-function SearchBar() {
+function SearchBar({ hidden }: { hidden: boolean }) {
   const { updateRecipesList, updateLoading } = useContext(RecipiesContext);
   const { pathname } = useLocation();
   const [searchType, setSearchType] = React.useState('');
@@ -75,8 +75,8 @@ function SearchBar() {
 
   return (
     <div
-      className="flex flex-col justify-center bg-mainPurple rounded-t-xl rounded-b-lg
-      mx-4 mb-6"
+      className={ `flex flex-col justify-center bg-mainPurple rounded-t-xl rounded-b-lg
+      mx-4 mb-6 animate-bounce-once ${hidden ? 'block' : 'hidden'}` }
     >
       <div>
         <input

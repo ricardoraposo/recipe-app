@@ -45,8 +45,6 @@ function CategoryFilter({ endpoints }: CategoryProps) {
         Object.values(data)[0] as CategoryType[]
       ).slice(0, 5)
         .map(({ strCategory }) => strCategory);
-
-      console.log('fiveCategories: ', fiveCategories);
       setCategoriesList(fiveCategories);
     };
     fetchCategories();

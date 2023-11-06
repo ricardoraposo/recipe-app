@@ -26,6 +26,7 @@ function ShareButton({ id, keyStr, testid }: Props) {
           data-testid={ testid }
           src={ shareIcon }
           alt="share button"
+          className="h-7"
         />
       </button>
       <p>{message && <p>{message}</p>}</p>

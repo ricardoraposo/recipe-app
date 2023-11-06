@@ -57,6 +57,7 @@ function IngredientCard({
     <li
       data-testid={ `${index}-ingredient-name-and-measure` }
       key={ product }
+      className="tracking-wide list-disc list-inside"
     >
       {`${ingredientName} - ${ingredientKey}`}
     </li>

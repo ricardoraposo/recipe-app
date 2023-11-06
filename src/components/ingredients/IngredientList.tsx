@@ -25,7 +25,7 @@ function IngredientList({ recipesData }: IngredientsListType) {
   }, [id, initInProgressStorage, key]);
 
   return (
-    <ul>
+    <ul className="border-2 rounded-lg py-4 px-2">
       {/* fazendo um .map das infos obtidas no array de "ingredients" */}
       {ingredients.map((product, index) => {
         // ingredientName armazena o "nome" dinâmico do produto/index
@@ -34,7 +34,7 @@ function IngredientList({ recipesData }: IngredientsListType) {
         const ingredientKey = recipesData[measurement[index]];
         return (
           <IngredientCard
-            key={ ingredientName }
+            key={ index }
             index={ index }
             product={ product }
             ingredientName={ ingredientName }

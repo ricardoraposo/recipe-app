@@ -69,7 +69,7 @@ function Header() {
         </div>
       </header>
       {pageTitle()}
-      {showSearchBar && <SearchBar />}
+      <SearchBar hidden={ showSearchBar } />
       <Outlet />
     </>
   );

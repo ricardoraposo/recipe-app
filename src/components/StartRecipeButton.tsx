@@ -43,14 +43,15 @@ function StartRecipeButton() {
   };
 
   return (
-    <div>
+    <div className="flex justify-center">
       {!isDone && (
         <button
-          style={ { position: 'fixed', bottom: '0px' } }
           data-testid="start-recipe-btn"
           onClick={ handleStartRecipeClick }
+          className="fixed bottom-0 text-center w-11/12 mb-4 py-3 bg-mainYellow rounded-lg
+          text-white font-bold"
         >
-          {isRecipeInProgress() ? 'Continue Recipe' : 'Start Recipe'}
+          {isRecipeInProgress() ? 'CONTINUE RECIPE' : 'START RECIPE'}
         </button>
       )}
     </div>

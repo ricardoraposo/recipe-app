@@ -42,7 +42,7 @@ function RecipiesProvider({ children }: RecipiesProviderProps) {
     setRenderRecipes(newList);
   }, []);
 
-  const updateLoading = (parameter: boolean) => setLoading(parameter);
+  const updateLoading = useCallback((parameter: boolean) => setLoading(parameter), []);
 
   const value: RecipiesContextType = {
     updateRecipesList,

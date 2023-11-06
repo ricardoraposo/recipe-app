@@ -21,7 +21,6 @@ function RecipeInProgress() {
   const key = pathname.includes('drinks') ? 'drinks' : 'meals';
   const dbUrl = pathname.includes('drinks') ? 'thecocktaildb' : 'themealdb';
   const url = `https://www.${dbUrl}.com/api/json/v1/1/lookup.php?i=${id}`;
-
   const storedIngredients = id ? recipes[key][id] : [];
   const { data, isLoading } = useFetch<ApiReturn>(url);
   const recipeData = data ? data[key][0] : {} as DrinkType | MealType;

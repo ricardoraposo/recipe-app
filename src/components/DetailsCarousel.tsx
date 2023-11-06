@@ -3,7 +3,6 @@ import useFetch from '../hooks/useFetch';
 
 import { DRINKS_LINK, MEALS_LINK } from '../Helpers/Links';
 import { ApiReturn } from '../Type/type';
-import styles from '../styles/DetailsCarousel.module.css';
 
 function DetailsCarousel() {
   const { pathname } = useLocation();
@@ -14,17 +13,27 @@ function DetailsCarousel() {
   const recipes = data ? data[key] : [];
 
   return (
-    <section>
-      <h2>Receitas recomendadas</h2>
-      <ul className={ styles.carouselCard }>
+    <section className="mb-20">
+      <h2 className="font-bold mt-6 mb-4">Recommended</h2>
+      <ul
+        className="w-full flex gap-5 list-none m-0 p-0 overflow-x-scroll"
+      >
         {recipes.slice(0, 6).map((recipe, index) => (
           <li
             key={ recipe.idDrink || recipe.idMeal }
             data-testid={ `${index}-recommendation-card` }
-            className={ styles.carouselItem }
+            className="min-w-[45%] border rounded-lg overflow-hidden shadow-lg"
           >
-            <h3 data-testid={ `${index}-recommendation-title` }>
-              {recipe.strDrink || recipe.strMeal}
+            <img
+              src={ recipe.strMealThumb || recipe.strDrinkThumb }
+              alt={ recipe.strMeal || recipe.strDrink }
+              className="object-cover"
+            />
+            <h3
+              data-testid={ `${index}-recommendation-title` }
+              className="m-2"
+            >
+              {recipe.strMeal || recipe.strDrink}
             </h3>
           </li>
         ))}
