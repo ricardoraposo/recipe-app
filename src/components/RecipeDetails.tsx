@@ -10,6 +10,7 @@ import StartRecipeButton from './StartRecipeButton';
 import FavoriteButton from './buttons/FavoriteButton';
 import MealCategoryIcon from '../images/mealCategoryIcon.svg';
 import DrinkCategoryIcon from '../images/drinkIcon.svg';
+import Loading from './Loading';
 
 function RecipeDetails() {
   const { id } = useParams<{ id: string }>();
@@ -22,7 +23,7 @@ function RecipeDetails() {
   const { data, isLoading } = useFetch<ApiReturn>(url);
   const recipeData = data ? data[key][0] : {} as DrinkType | MealType;
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading />;
 
   return (
     <div>

@@ -3,14 +3,17 @@ import useFetch from '../hooks/useFetch';
 
 import { DRINKS_LINK, MEALS_LINK } from '../Helpers/Links';
 import { ApiReturn } from '../Type/type';
+import Loading from './Loading';
 
 function DetailsCarousel() {
   const { pathname } = useLocation();
   const url = pathname.includes('drinks') ? MEALS_LINK : DRINKS_LINK;
   const key = pathname.includes('drinks') ? 'meals' : 'drinks';
 
-  const { data } = useFetch<ApiReturn>(url);
+  const { data, isLoading } = useFetch<ApiReturn>(url);
   const recipes = data ? data[key] : [];
+
+  if (isLoading) return <Loading />;
 
   return (
     <section className="mb-20">

@@ -19,6 +19,9 @@ function FinishButton({ ingredients, storedIngredients, setToDoneRecipes }: Prop
         setToDoneRecipes();
         nav('/done-recipes');
       } }
+      className="fixed bottom-0 text-center w-11/12 mb-4 py-3
+      bg-mainYellow rounded-lg text-white font-bold right-1/2 translate-x-1/2
+      disabled:bg-gray-300 disabled:opacity-90"
     >
       Finish Recipe
     </button>

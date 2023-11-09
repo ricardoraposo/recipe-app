@@ -22,7 +22,7 @@ export type DoneRecipesLSType = {
   alcoholicOrNot: string,
   name: string,
   image: string,
-  doneDate: Date,
+  doneDate: string,
   tags: string[],
 };
 

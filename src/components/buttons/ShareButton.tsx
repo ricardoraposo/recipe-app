@@ -8,17 +8,17 @@ type Props = {
 };
 
 function ShareButton({ id, keyStr, testid }: Props) {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState(false);
 
   const handleShareClick = async () => {
     const recipeLink = `http://localhost:3000/${keyStr}/${id}`;
     await navigator.clipboard.writeText(recipeLink);
-    setMessage('Link copied!');
+    setMessage(true);
     return message;
   };
 
   return (
-    <div>
+    <div className="flex justify-center items-center group">
       <button
         onClick={ handleShareClick }
       >
@@ -29,7 +29,13 @@ function ShareButton({ id, keyStr, testid }: Props) {
           className="h-7"
         />
       </button>
-      <p>{message && <p>{message}</p>}</p>
+      <p
+        className="fixed top-1/4 left-1/2 whitespace-nowrap bg-mainPurple text-white
+        p-2 rounded-xl text-xl scale-0 group-hover:scale-100
+        transition-all -translate-x-1/2 -translate-y-1/2"
+      >
+        Link copied!
+      </p>
     </div>
   );
 }

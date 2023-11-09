@@ -28,7 +28,9 @@ function IngredientCard({
 
   if (pathname.includes('in-progress')) {
     return (
-      <>
+      <div
+        className="tracking-wide h-8"
+      >
         <label
           htmlFor={ ingredientName }
           data-testid={ `${index}-ingredient-step` }
@@ -36,6 +38,7 @@ function IngredientCard({
             textDecoration: isInProgress(ingredientName)
               ? 'line-through solid rgb(0, 0, 0)' : 'none',
           } }
+          className="flex items-center gap-2"
         >
           <input
             type="checkbox"
@@ -49,7 +52,7 @@ function IngredientCard({
 
         </label>
         <br />
-      </>
+      </div>
     );
   }
 

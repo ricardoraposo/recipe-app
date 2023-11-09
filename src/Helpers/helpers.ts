@@ -10,3 +10,16 @@ export const initInProgress = {
   meals: {},
   drinks: {},
 };
+
+const addZero = (value: number) => {
+  return value < 10 ? `0${value}` : value;
+};
+
+export const formatDate = () => {
+  const date = new Date();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const year = date.getFullYear();
+
+  return `${addZero(month)}/${addZero(day)}/${addZero(year)}`;
+};

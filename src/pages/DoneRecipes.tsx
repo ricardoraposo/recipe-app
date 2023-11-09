@@ -25,44 +25,60 @@ function DoneRecipes() {
   return (
     <div>
       <TypeFilter setFilter={ setFilter } />
-      {
-        filteredRecipes.map((recipe, index) => (
-          <div key={ recipe.id }>
-            <button
-              onClick={ () => navigate(`/${recipe.type}s/${recipe.id}`) }
+      <div className="flex flex-col mt-12 w-screen px-3 gap-6">
+        {
+          filteredRecipes.map((recipe, index) => (
+            <div
+              key={ recipe.id }
+              className="flex border-2 rounded-lg overflow-hidden gap-2"
             >
-              <img
-                data-testid={ `${index}-horizontal-image` }
-                src={ recipe.image }
-                alt="foto da receita"
-                height={ 400 }
-              />
-            </button>
-            <p data-testid={ `${index}-horizontal-top-text` }>
-              {recipe.type === 'drink'
-                ? `${recipe.alcoholicOrNot} - ${recipe.category}`
-                : `${recipe.nationality} - ${recipe.category}`}
-            </p>
-            <button
-              onClick={ () => navigate(`/${recipe.type}s/${recipe.id}`) }
-              data-testid={ `${index}-horizontal-name` }
-            >
-              {recipe.name}
-            </button>
-            <p
-              data-testid={ `${index}-horizontal-done-date` }
-            >
-              {recipe.doneDate.toString()}
-            </p>
-            <ShareButton
-              id={ recipe.id }
-              keyStr={ `${recipe.type}s` }
-              testid={ `${index}-horizontal-share-btn` }
-            />
-            <Tags index={ index } tagList={ recipe.tags } />
-          </div>
-        ))
-      }
+              <button
+                onClick={ () => navigate(`/${recipe.type}s/${recipe.id}`) }
+                className="w-1/2"
+              >
+                <img
+                  data-testid={ `${index}-horizontal-image` }
+                  src={ recipe.image }
+                  alt="foto da receita"
+                  height={ 400 }
+                  className="w-full"
+                />
+              </button>
+              <div className="w-1/2 flex flex-col justify-around items-start">
+                <div>
+                  <button
+                    onClick={ () => navigate(`/${recipe.type}s/${recipe.id}`) }
+                    data-testid={ `${index}-horizontal-name` }
+                    className="text-base font-bold pt-8"
+                  >
+                    {recipe.name}
+                  </button>
+                  <p
+                    data-testid={ `${index}-horizontal-top-text` }
+                    className="text-xs"
+                  >
+                    {recipe.type === 'drink'
+                      ? `${recipe.alcoholicOrNot} - ${recipe.category}`
+                      : `${recipe.nationality} - ${recipe.category}`}
+                  </p>
+                  <p
+                    data-testid={ `${index}-horizontal-done-date` }
+                    className="text-xs"
+                  >
+                    {`Done in: ${recipe.doneDate}`}
+                  </p>
+                </div>
+                <ShareButton
+                  id={ recipe.id }
+                  keyStr={ `${recipe.type}s` }
+                  testid={ `${index}-horizontal-share-btn` }
+                />
+                <Tags index={ index } tagList={ recipe.tags } />
+              </div>
+            </div>
+          ))
+        }
+      </div>
     </div>
   );
 }

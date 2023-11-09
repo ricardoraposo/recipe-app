@@ -13,17 +13,17 @@ function RenderRecipes({ listLength }: RenderRecipesProps) {
   const { renderRecipes, loading } = useContext(RecipiesContext);
   const { pathname } = useLocation();
 
+  if (loading) return <Loading />;
+
   return (
     <div className="flex flex-wrap justify-center gap-8">
       {
-        loading ? <Loading /> : (
-          renderRecipes?.slice(0, listLength)
-            .map((recipe: DrinkType | MealType, index) => (
-              <Link to={ `${pathname}/${recipe.idMeal || recipe.idDrink}` } key={ index }>
-                <RecipeCard cardIndex={ index } recipe={ recipe } />
-              </Link>
-            ))
-        )
+        renderRecipes?.slice(0, listLength)
+          .map((recipe: DrinkType | MealType, index) => (
+            <Link to={ `${pathname}/${recipe.idMeal || recipe.idDrink}` } key={ index }>
+              <RecipeCard cardIndex={ index } recipe={ recipe } />
+            </Link>
+          ))
       }
     </div>
   );
