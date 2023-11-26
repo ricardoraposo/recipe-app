@@ -1,10 +1,8 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# Recipe App
+
+Projeto de conclusão do módulo de front-end da Trybe.
+Foi utilizado Typescript, React e Tailwind para execução deste projeto.
+
+Um dos grandes diferenciais desta aplicação foi a utilização de custom hooks para trabalhar
+com local storage, formulário e para execução de chamadas de API, com utilização de um
+simulador de cache para navegação rápida e fluida dentro do website.
