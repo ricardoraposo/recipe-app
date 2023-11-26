@@ -5,8 +5,8 @@ import IngredientList from './ingredients/IngredientList';
 import ShareButton from './buttons/ShareButton';
 import FavoriteButton from './buttons/FavoriteButton';
 import FinishButton from './buttons/FinishButton';
-import useFetch from '../hooks/useFetch';
 import RecipiesContext from '../context/RecipiesContext';
+import useFetch from '../hooks/useFetch';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 import MealCategoryIcon from '../images/mealCategoryIcon.svg';
@@ -22,6 +22,9 @@ function RecipeInProgress() {
     'doneRecipes',
     [],
   );
+
+  const fodase = () => {
+  };
 
   const key = pathname.includes('drinks') ? 'drinks' : 'meals';
   const dbUrl = pathname.includes('drinks') ? 'thecocktaildb' : 'themealdb';
